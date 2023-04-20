@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for("static", filename="main.css") }}">
+<div class="main_area">
+    <div class="title_area">
+        <h1 class="title" style="user-select: none">
+            L2S
+        </h1>
+        <span class="sub_title" style="user-select: none">
+            Long url to Short url
+        </span>
+    </div>
+    <br>
+    <form action="{{ url_for('main.create') }}" method="POST">
+        <div class="input_area">
+            <div class="url_input">
+                <div class="original_url">
+                    <label>
+                        <span class="input_box">
+                            <input type="url" placeholder="줄일 링크를 입력해주세요." autofocus name="origin_url">
+                        </span>
+                    </label>
+                </div>
+                <div class="short_url">
+                    <label>
+                        <span class="input_box">
+                            <input type="text" placeholder="새 링크를 입력해주세요. (최대 20자)" autofocus name="new_url" maxlength="20">
+                        </span>
+                    </label>
+                </div>
+            </div>
+            <input type="submit" value="링크 줄이기" class="submit_button">
+        </div>
+    </form>
+</div>
+
+{% endblock %}

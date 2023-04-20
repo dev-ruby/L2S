@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script src="{{ url_for("static", filename="copy.js") }}"></script>
+    <link rel="stylesheet" href="{{ url_for("static", filename="create_success.css") }}">
+<div class="main_area">
+    <div class="title_area">
+        <h1 class="title" style="user-select: none">
+            링크 생성 성공
+        </h1>
+        <span class="sub_title" style="user-select: none">
+            {{ "l2s.kro.kr/s/" + new_url }}
+        </span>
+        <br>
+        <input class = "copy_button" type="submit" onclick="copy()" value="링크 복사하기">
+    </div>
+</div>
+
+{% endblock %}

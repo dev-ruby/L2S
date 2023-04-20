@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+    <!-- Noto Sans KR Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Title -->
+    <title>L2S - URL Shortener Service</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url_for('static', filename='logo.png') }}">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for("static", filename="base.css") }}">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand mt-2 mt-lg-0 bt-3 m-0" href="/">
+                <img class="nav_logo" src="{{ url_for("static", filename="logo.png") }}" height="50" alt="L2S" loading="lazy" style="user-select: none" />
+            </a>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1" style="padding-left:20px">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="/" style="user-select: none">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" href="https://github.com/dev-ruby/L2S" style="user-select: none">Github</a>
+                    </li>
+                </ul>
+                <form class="navbar-form navbar-right" action="/">
+                    <div class="input-group">
+                        <label>
+                            <input type="text" class="form-control" placeholder="Search Shortened Url" style="width: 190px">
+                        </label>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit" style="height: 38px">
+                                <img src="{{ url_for('static', filename='search.png') }}" alt="Search" height="25px" width="25px">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+{% block content %}
+{% endblock %}
+</body>
+</html>

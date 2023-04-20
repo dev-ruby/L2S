@@ -1,0 +1,19 @@
+.main_area {
+    text-align: center;
+    margin-top: 210px;
+}
+
+.title {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.sub_title {
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+.copy_button {
+    margin-top: 15px;
+    font-size: 25px;
+}

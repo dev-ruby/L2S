@@ -1,0 +1,18 @@
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #f5f5f5;
+}
+nav {
+    background-color: #f2f0f1;
+    height: 60px;
+    border-bottom: 5px;
+}
+.nav_logo {
+    width: 59px;
+    height: 59px;
+    overflow: hidden;
+}
+.nav-item {
+    font-size: 25px;
+    padding-left: 10px;
+}
