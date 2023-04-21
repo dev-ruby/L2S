@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Optional
 
+import random
+
 from flask import Blueprint, request, render_template, redirect, url_for
 
 import utils
@@ -38,15 +40,18 @@ def commit_url(original_url: str, new_url: str) -> None:
 
 def create_new_url(original_url: str, new_url: Optional[str] = None):
     if new_url:
-        if not is_exist_url(new_url):
-            commit_url(original_url, new_url)
-            return render_template("create_success.html", new_url = new_url)
+        if len(new_url) <= 20:
+            if not is_exist_url(new_url):
+                commit_url(original_url, new_url)
+                return render_template("create_success.html", new_url=new_url)
+            else:
+                return redirect("/")
         else:
             return redirect("/")
     else:
-        new_url = create_hash_url(original_url)
+        new_url = create_hash_url("".join(random.sample(original_url, len(original_url)-1)))
         commit_url(original_url, new_url)
-        return render_template("create_success.html", new_url = new_url)
+        return render_template("create_success.html", new_url=new_url)
 
 
 @bp.route("/create", methods=["POST"])
