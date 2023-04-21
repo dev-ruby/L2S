@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Optional
 
 import random
+import re
 
 from flask import Blueprint, request, render_template, redirect, url_for
 
@@ -39,19 +40,25 @@ def commit_url(original_url: str, new_url: str) -> None:
 
 
 def create_new_url(original_url: str, new_url: Optional[str] = None):
-    if new_url:
-        if len(new_url) <= 20:
-            if not is_exist_url(new_url):
-                commit_url(original_url, new_url)
-                return render_template("create_success.html", new_url=new_url)
+    url_pattern = r"^(https?://)?([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}(:[0-9]{1,5})?(\/.*)?$"
+    res = re.match(url_pattern, original_url)
+
+    if res:
+        if new_url:
+            if len(new_url) <= 20:
+                if not is_exist_url(new_url):
+                    commit_url(original_url, new_url)
+                    return render_template("create_success.html", new_url=new_url)
+                else:
+                    return render_template("create_fail.html", case=1)
             else:
-                return redirect("/")
+                return render_template("create_fail.html", case=2)
         else:
-            return redirect("/")
+            new_url = create_hash_url("".join(random.sample(original_url, len(original_url) - 1)))
+            commit_url(original_url, new_url)
+            return render_template("create_success.html", new_url=new_url)
     else:
-        new_url = create_hash_url("".join(random.sample(original_url, len(original_url)-1)))
-        commit_url(original_url, new_url)
-        return render_template("create_success.html", new_url=new_url)
+        return render_template("create_fail.html", case=0)
 
 
 @bp.route("/create", methods=["POST"])

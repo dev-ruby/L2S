@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for("static", filename="create_fail.css") }}">
+<div class="main_area">
+    <div class="title_area">
+        <h1 class="title" style="user-select: none">
+            링크 생성 실패
+        </h1>
+        <span class="sub_title" style="user-select: none">
+            {% if case == 0 %}
+                URL 형식이 유효하지 않습니다.
+            {% elif case == 1 %}
+                커스텀 URL이 이미 존재합니다.
+            {% elif case == 2 %}
+                커스텀 URL의 길이가 너무 깁니다.
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+{% endblock %}
