@@ -49,4 +49,4 @@ jobs:
             docker pull devruby/l2s-backend:latest
             docker stop l2s-backend || true
             docker rm l2s-backend || true
-            docker run -d --name l2s-backend -p 8001:8000 devruby/l2s-backend:latest
+            docker run -d --name l2s-backend -v l2s-data:/workspace/data -p 8001:8000 devruby/l2s-backend:latest
