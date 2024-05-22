@@ -27,7 +27,7 @@ jobs:
           docker build -t devruby/l2s-frontend:latest ./frontend
           docker build -t devruby/l2s-backend:latest ./backend
           docker push devruby/l2s-frontend:latest
-          docker push devruby/l2-backend:latest
+          docker push devruby/l2s-backend:latest
 
   deploy:
     runs-on: ubuntu-latest
