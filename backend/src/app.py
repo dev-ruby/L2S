@@ -47,7 +47,7 @@ def main(
         if db.query(Url).get(new_url):
             new_url = None
             code = 2
-        elif len(new_url) > 20 or "/" in new_url or "api" in new_url:
+        elif len(new_url) > 20 or "/" in new_url or "api" in new_url or "_next" in new_url:
             new_url = None
             code = 3
     else:
