@@ -1,0 +1,15 @@
+# Virtual Environment
+.venv
+
+# Next build files
+.next
+
+# packages
+node_modules/
+
+# CPython cache
+*.pyc
+
+# Pycharm & Webstorm setting files
+.idea
+
