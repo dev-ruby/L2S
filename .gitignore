@@ -13,3 +13,5 @@ node_modules/
 # Pycharm & Webstorm setting files
 .idea
 
+# Data files
+data/
