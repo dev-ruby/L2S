@@ -41,12 +41,12 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           script: |
-            docker pull devruby/l2s-frontend:latest
-            docker stop l2s-frontend || true
-            docker rm l2s-frontend || true
-            docker run -d --name l2s-frontend -p 3001:3000 devruby/l2s-frontend:latest
+            sudo docker pull devruby/l2s-frontend:latest
+            sudo docker stop l2s-frontend || true
+            sudo docker rm l2s-frontend || true
+            sudo docker run -d --name l2s-frontend -p 3001:3000 devruby/l2s-frontend:latest
             
-            docker pull devruby/l2s-backend:latest
-            docker stop l2s-backend || true
-            docker rm l2s-backend || true
-            docker run -d --name l2s-backend -v l2s-data:/workspace/data -p 8001:8000 devruby/l2s-backend:latest
+            sudo docker pull devruby/l2s-backend:latest
+            sudo docker stop l2s-backend || true
+            sudo docker rm l2s-backend || true
+            sudo docker run -d --name l2s-backend -v l2s-data:/workspace/data -p 8001:8000 devruby/l2s-backend:latest
