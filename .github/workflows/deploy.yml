@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            docker pull my-dockerhub-username/l2s-frontend:latest
-            docker stop l2s-frontend || true
-            docker rm l2s-frontend || true
-            docker run -d --name l2s-frontend -p 3001:3000 devruby/l2s-frontend:latest
+            sudo docker pull my-dockerhub-username/l2s-frontend:latest
+            sudo docker stop l2s-frontend || true
+            sudo docker rm l2s-frontend || true
+            sudo docker run -d --name l2s-frontend -p 3001:3000 devruby/l2s-frontend:latest
