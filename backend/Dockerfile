@@ -2,8 +2,7 @@ FROM python:3.12-slim
 
 WORKDIR /workspace/
 
-COPY ./src/requirements.txt /workspace/src/
-RUN pip install --no-cache-dir -r /workspace/src/requirements.txt
+RUN pip install fastapi uvicorn[standard] pydantic sqlalchemy fastapi-limiter --no-cache-dir
 
 RUN apt-get update && \
     apt-get install -y redis-server && \
