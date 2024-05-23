@@ -36,6 +36,7 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker buildx build --cache-from type=local,src=/tmp/.buildx-cache --cache-to type=local,dest=/tmp/.buildx-cache-new --push --tag devruby/l2s-${{ matrix.service }}:latest ./${{ matrix.service }}
+          rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
   deploy:
