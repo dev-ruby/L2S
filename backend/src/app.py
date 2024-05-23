@@ -3,10 +3,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+import redis.asyncio as redis
 
 from .db import get_db_session
 from .models import Url
 from .utils import generate_new_hash
+
+from fastapi_limiter import FastAPILimiter
+from fastapi_limiter.depends import RateLimiter
 
 app = FastAPI(docs_url=None, redoc_url=None)
 
@@ -22,6 +26,13 @@ class UrlForm(BaseModel):
     original_link: str
 
 
+
+@app.on_event("startup")
+async def startup():
+    redis_connection = redis.from_url("redis://localhost", encoding="utf-8", decode_responses=True)
+    await FastAPILimiter.init(redis_connection)
+
+
 @app.get("/{url}")
 def redirect(url: str, db: Session = Depends(get_db_session)):
     target = db.query(Url).get(url)
@@ -31,7 +42,7 @@ def redirect(url: str, db: Session = Depends(get_db_session)):
         return RedirectResponse("https://l2s.kro.kr")
 
 
-@app.post("/api/create")
+@app.post("/api/create", dependencies=[Depends(RateLimiter(times=1, seconds=1))])
 def main(
     url_form: UrlForm,
     db: Session = Depends(get_db_session),
